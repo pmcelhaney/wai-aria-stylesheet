@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+	<title>WAI-ARIA Stylesheet Testbed</title>
+	<style type="text/css">
+[role=grid] {
+    display: table !important;
+    border-collapse: separate !important;
+    border-spacing: 2px !important;
+    border-color: gray !important;
+    border-width: 1px !important;
+}
+
+[role=rowgroup] {
+    display: table-row-group !important;
+    vertical-align: middle !important;
+    border-color: inherit !important;
+}
+
+[role=row] {
+    display: table-row !important;
+    vertical-align: inherit !important;
+    border-color: inherit !important;
+}
+
+
+[role=gridcell], [role=columnheader] {
+    display: table-cell !important;
+    vertical-align: inherit !important;
+    border: 1px solid black !important;
+}
+
+[role=columnheader] {
+    font-weight: bold !important;
+}
+
+
+	</style>
+
+	<link rel="stylesheet" type="text/css" href="grid-hover-effects.css">
+
+</head>
+<body>
+
+
+<h2>Ordinary Table</h2>
+<table>
+	<thead>
+		<tr>
+			<td>A</td>
+			<td>B</td>
+			<td>C</td>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td>A1</td>
+			<td>B1</td>
+			<td>C1</td>
+		</tr>
+		<tr>
+			<td>A2</td>
+			<td>B2</td>
+			<td>C2</td>
+		</tr>
+	</tbody>
+</table>
+
+
+<h2>WAI-ARIA GRID</h2>
+<div role="grid">
+
+
+	<div role="presentation">
+		<div role="row">
+			<div role="presentation"><div role="columnheader">A</div></div>
+			<div role="columnheader">B</div>
+			<div role="columnheader">C</div>
+		</div>
+
+		<div role="row">
+			<div role="gridcell">A1</div>
+			<div role="presentation">
+				<div role="gridcell">B1</div>
+				<div role="gridcell">C1</div>
+			</div>
+		</div>
+
+	</div>
+		<div role="row">
+			<div role="gridcell">A2</div>
+			<div role="gridcell">B2</div>
+			<div role="gridcell">C2</div>
+		</div>
+</div>
+
+
+</body>
+</html>
