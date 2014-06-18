@@ -1,21 +1,23 @@
 
 
-[role=row]:hover {
+[role=row]:hover, tr:not([role=presentation]):hover {
     background-color: yellow;
 }
 
-[role=columnheader]:hover {
+[role=columnheader]:hover, th:not([role=presentation]):hover  {
     background-color: #6699ff;
     position: relative;
 }
 
-[role=gridcell]:hover {
+[role=gridcell]:hover, td:not([role=presentation]):hover  {
     background-color: #99ccff;
     position: relative;
 }
 
 [role=columnheader]:hover:after,
-[role=gridcell]:hover:after {
+[role=gridcell]:hover:after,
+th:not([role=presentation]):hover:after,
+td:not([role=presentation]):hover:after {
 	position: absolute;
 	bottom: 0;
 	right: 0;
@@ -31,4 +33,13 @@
 
 [role=gridcell]:hover:after {
 	content: "gridcell";
+}
+
+
+th:not([role=presentation]):hover:after {
+	content: "th";
+}
+
+td:not([role=presentation]):hover:after {
+	content: "td";
 }
