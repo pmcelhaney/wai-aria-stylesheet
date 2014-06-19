@@ -55,6 +55,8 @@ window.waiAriaView = function (stylesheetRootUrl) {
 		document.head.appendChild(hoverEffects);
 
 		window.waiAriaViewData.hoverEffects = hoverEffects;
+		removePresentationNodes();
+
 	} else {
 		document.body.innerHTML = window.waiAriaViewData.cachedHTML;
 
@@ -62,7 +64,10 @@ window.waiAriaView = function (stylesheetRootUrl) {
 			document.styleSheets[i].disabled = false;
 		}
 
+		document.head.removeChild(window.waiAriaViewData.roles);
+		document.head.removeChild(window.waiAriaViewData.hoverEffects);
+
 	}
 
-	removePresentationNodes();
+
 };
