@@ -19,6 +19,8 @@ window.waiAriaView = function (stylesheetRootUrl) {
 	console.log(window.waiAriaViewData);
 
 	if (window.waiAriaViewData.enabled) {
+		window.waiAriaViewData.cachedHTML = document.body.innerHTML;
+
 		hideHiddenNodes(document.body);
 
 
@@ -41,13 +43,12 @@ window.waiAriaView = function (stylesheetRootUrl) {
 
 		window.waiAriaViewData.hoverEffects = hoverEffects;
 	} else {
+		document.body.innerHTML = window.waiAriaViewData.cachedHTML;
 
 		for (var i = 0; i < document.styleSheets.length; i++) {
 			document.styleSheets[i].disabled = false;
 		}
 
-		document.head.removeChild(window.waiAriaViewData.roles);
-		document.head.removeChild(window.waiAriaViewData.hoverEffects);
 	}
 
 
