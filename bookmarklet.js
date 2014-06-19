@@ -12,6 +12,19 @@ window.waiAriaView = function (stylesheetRootUrl) {
 	}
 
 
+	function removePresentationNodes() {
+		var elements = document.querySelectorAll('[role=presentation]');
+		for (var i=0; i < elements.length; i++) {
+			var el = elements[i];
+			var childNodes = el.childNodes;
+			for (var j=childNodes.length-1; j >= 0; j--) {
+				el.parentNode.insertBefore(childNodes[j], el);
+			}
+			el.parentNode.removeChild(el);
+		}
+	};
+
+
 	window.waiAriaViewData = window.waiAriaViewData || {};
 
 	window.waiAriaViewData.enabled = !window.waiAriaViewData.enabled;
@@ -51,5 +64,5 @@ window.waiAriaView = function (stylesheetRootUrl) {
 
 	}
 
-
-}
+	removePresentationNodes();
+};
