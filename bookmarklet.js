@@ -13,7 +13,7 @@ window.waiAriaView = function (stylesheetRootUrl) {
 
 
 	function removePresentationNodes() {
-		var elements = document.querySelectorAll('[role=presentation]');
+		var elements = document.querySelectorAll('[role=presentation],div:not([role]),span:not([role])');
 		for (var i=0; i < elements.length; i++) {
 			var el = elements[i];
 			var childNodes = el.childNodes;
