@@ -9,14 +9,6 @@ window.waiAriaView = function (stylesheetRootUrl) {
 		for (var i = 0; i < element.children.length; i++) {
 			hideHiddenNodes(element.children[i]);
 		}
-	};
-
-	function disablePresentationElements(element) {
-		var elements = document.querySelectorAll('[role=presentation]');
-		while (elements.length) {
-			elements[0].outerHTML = '<!--' + elements[0].nodeName + '-->' + elements[0].innerHTML + '<!--/' + elements[0].nodeName + '->';
-			elements = document.querySelectorAll('[role=presentation]');
-		}
 	}
 
 
@@ -27,12 +19,8 @@ window.waiAriaView = function (stylesheetRootUrl) {
 	console.log(window.waiAriaViewData);
 
 	if (window.waiAriaViewData.enabled) {
-
-		window.waiAriaViewData.cachedHTML = document.body.innerHTML;
-
 		hideHiddenNodes(document.body);
 
-		disablePresentationElements();
 
 		for (var i = 0; i < document.styleSheets.length; i++) {
 			document.styleSheets[i].disabled = true;
@@ -54,13 +42,13 @@ window.waiAriaView = function (stylesheetRootUrl) {
 		window.waiAriaViewData.hoverEffects = hoverEffects;
 	} else {
 
-		document.body.innerHTML = window.waiAriaViewData.cachedHTML;
-
 		for (var i = 0; i < document.styleSheets.length; i++) {
 			document.styleSheets[i].disabled = false;
 		}
-	}
 
+		document.head.removeChild(window.waiAriaViewData.roles);
+		document.head.removeChild(window.waiAriaViewData.hoverEffects);
+	}
 
 
 }
