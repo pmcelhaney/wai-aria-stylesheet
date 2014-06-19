@@ -17,10 +17,36 @@ window.waiAriaView = function (stylesheetRootUrl) {
 		for (var i=0; i < elements.length; i++) {
 			var el = elements[i];
 			var childNodes = el.childNodes;
+			var childNodesClone = [];
 			for (var j=childNodes.length-1; j >= 0; j--) {
-				el.parentNode.insertBefore(childNodes[j], el);
+				childNodesClone[j] = childNodes[j];
 			}
+			for (var j=0; j < childNodesClone.length; j++) {
+				el.parentNode.insertBefore(childNodesClone[j], el);
+			}
+
 			el.parentNode.removeChild(el);
+		}
+	};
+
+	function resolveLabelForElement(el) {
+		var labelTag;
+		if (el.id && (labelTag = document.querySelector('label[for="' + el.id + '"]')) ) {
+			return labelTag.innerText;
+		}
+		return el.getAttribute('aria-label') || el.getAttribute('title');
+	};
+
+	function matchInputsWithLabels() {
+		var inputs = document.querySelectorAll('input');
+		for (var i=0; i < inputs.length; i++) {
+			var el = inputs[i];
+			var wrapper = document.createElement('div');
+			var label = document.createElement('span');
+			label.innerText = resolveLabelForElement(el);
+			el.parentNode.insertBefore(wrapper, el);
+			wrapper.appendChild(label)
+			wrapper.appendChild(el);
 		}
 	};
 
@@ -56,6 +82,7 @@ window.waiAriaView = function (stylesheetRootUrl) {
 
 		window.waiAriaViewData.hoverEffects = hoverEffects;
 		removePresentationNodes();
+		matchInputsWithLabels();
 
 	} else {
 		document.body.innerHTML = window.waiAriaViewData.cachedHTML;

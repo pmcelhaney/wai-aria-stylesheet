@@ -28,3 +28,7 @@
 [role=columnheader] {
     font-weight: bold !important;
 }
+
+label {
+    visibility: hidden;
+}

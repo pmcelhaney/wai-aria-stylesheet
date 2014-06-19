@@ -43,3 +43,7 @@ th:not([role]):hover:after {
 td:not([role]):hover:after {
 	content: "td";
 }
+
+label[for] {
+	visiblity: hidden;
+}
