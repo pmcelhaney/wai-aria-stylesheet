@@ -3,42 +3,13 @@
 <html>
 <head>
 	<title>WAI-ARIA Stylesheet Testbed</title>
+
 	<style type="text/css">
-[role=grid] {
-    display: table !important;
-    border-collapse: separate !important;
-    border-spacing: 2px !important;
-    border-color: gray !important;
-    border-width: 1px !important;
-}
-
-[role=rowgroup] {
-    display: table-row-group !important;
-    vertical-align: middle !important;
-    border-color: inherit !important;
-}
-
-[role=row] {
-    display: table-row !important;
-    vertical-align: inherit !important;
-    border-color: inherit !important;
-}
-
-
-[role=gridcell], [role=columnheader] {
-    display: table-cell !important;
-    vertical-align: inherit !important;
-    border: 1px solid black !important;
-}
-
-[role=columnheader] {
-    font-weight: bold !important;
-}
-
-
+		body {
+			background-color:  red;
+		}
 	</style>
 
-	<link rel="stylesheet" type="text/css" href="grid-hover-effects.css">
 
 </head>
 <body>
@@ -95,6 +66,16 @@
 		</div>
 </div>
 
+
+<p aria-hidden="true">
+This should be hidden.
+</p>
+
+
+<script type="text/javascript" src="bookmarklet.js"></script>
+<script type="text/javascript">
+	window.waiAriaView('');
+</script>
 
 </body>
 </html>
