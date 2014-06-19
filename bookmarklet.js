@@ -11,24 +11,44 @@ window.waiAriaView = function (stylesheetRootUrl) {
 		}
 	}
 
-	hideHiddenNodes(document.body);
+
+	window.waiAriaViewData = window.waiAriaViewData || {};
+
+	window.waiAriaViewData.enabled = !window.waiAriaViewData.enabled;
+
+	console.log(window.waiAriaViewData);
+
+	if (window.waiAriaViewData.enabled) {
+		hideHiddenNodes(document.body);
 
 
-	for (var i = 0; i < document.styleSheets.length; i++) {
-		document.styleSheets[i].disabled = true;
+		for (var i = 0; i < document.styleSheets.length; i++) {
+			document.styleSheets[i].disabled = true;
+		}
+
+		var roles = document.createElement('link');
+		roles.href = stylesheetRootUrl + 'wai-aria-roles.css';
+		roles.rel = 'stylesheet';
+		roles.type= 'text/css';
+		document.head.appendChild(roles);
+		window.waiAriaViewData.roles = roles;
+
+		var hoverEffects = document.createElement('link');
+		hoverEffects.href = stylesheetRootUrl + 'grid-hover-effects.css';
+		hoverEffects.rel = 'stylesheet';
+		hoverEffects.type= 'text/css';
+		document.head.appendChild(hoverEffects);
+
+		window.waiAriaViewData.hoverEffects = hoverEffects;
+	} else {
+
+		for (var i = 0; i < document.styleSheets.length; i++) {
+			document.styleSheets[i].disabled = false;
+		}
+
+		document.head.removeChild(window.waiAriaViewData.roles);
+		document.head.removeChild(window.waiAriaViewData.hoverEffects);
 	}
 
-
-	var roles = document.createElement('link');
-	roles.href = stylesheetRootUrl + 'wai-aria-roles.css';
-	roles.rel = 'stylesheet';
-	roles.type= 'text/css';
-	document.head.appendChild(roles);
-
-	var hoverEffects = document.createElement('link');
-	hoverEffects.href = stylesheetRootUrl + 'grid-hover-effects.css';
-	hoverEffects.rel = 'stylesheet';
-	hoverEffects.type= 'text/css';
-	document.head.appendChild(hoverEffects);
 
 }
