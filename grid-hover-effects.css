@@ -1,23 +1,23 @@
 
 
-[role=row]:hover, tr:not([role=presentation]):hover {
+[role=row]:hover, tr:not([role]):hover {
     background-color: yellow;
 }
 
-[role=columnheader]:hover, th:not([role=presentation]):hover  {
+[role=columnheader]:hover, th:not([role]):hover  {
     background-color: #6699ff;
     position: relative;
 }
 
-[role=gridcell]:hover, td:not([role=presentation]):hover  {
+[role=gridcell]:hover, td:not([role]):hover  {
     background-color: #99ccff;
     position: relative;
 }
 
 [role=columnheader]:hover:after,
 [role=gridcell]:hover:after,
-th:not([role=presentation]):hover:after,
-td:not([role=presentation]):hover:after {
+th:not([role]):hover:after,
+td:not([role]):hover:after {
 	position: absolute;
 	bottom: 0;
 	right: 0;
@@ -36,10 +36,10 @@ td:not([role=presentation]):hover:after {
 }
 
 
-th:not([role=presentation]):hover:after {
+th:not([role]):hover:after {
 	content: "th";
 }
 
-td:not([role=presentation]):hover:after {
+td:not([role]):hover:after {
 	content: "td";
 }
