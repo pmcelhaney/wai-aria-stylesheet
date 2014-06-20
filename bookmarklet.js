@@ -31,18 +31,30 @@ window.waiAriaView = function (stylesheetRootUrl) {
 
 	function resolveLabelForElement(el) {
 		var labelTag;
+		var labelledById;
+
+		if ((labelledById = el.getAttribute('aria-labelledby')) && (labelTag = document.getElementById(labelledById)) ) {
+			return labelTag.innerText;
+		}
+
+		if (el.getAttribute('aria-label')) {
+			return	el.getAttribute('aria-label');
+		}
+
 		if (el.id && (labelTag = document.querySelector('label[for="' + el.id + '"]')) ) {
 			return labelTag.innerText;
 		}
-		return el.getAttribute('aria-label') || el.getAttribute('title');
+
+		return el.getAttribute('title') || '';
 	};
 
 	function matchInputsWithLabels() {
-		var inputs = document.querySelectorAll('input');
+		var inputs = document.querySelectorAll('input,select,textarea');
 		for (var i=0; i < inputs.length; i++) {
 			var el = inputs[i];
 			var wrapper = document.createElement('div');
 			var label = document.createElement('span');
+			label.setAttribute('aria-hidden', 'true');
 			label.innerText = resolveLabelForElement(el);
 			el.parentNode.insertBefore(wrapper, el);
 			wrapper.appendChild(label)

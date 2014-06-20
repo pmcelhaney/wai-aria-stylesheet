@@ -39,7 +39,7 @@
 </table>
 
 
-<h2>WAI-ARIA GRID</h2>
+<h2>WAI-ARIA Grid</h2>
 <div role="grid">
 
 
@@ -71,10 +71,25 @@
 This should be hidden.
 </p>
 
+<h2>HTML Form</h2>
+
 <form>
 <label for="fn">First Name</label><input id="fn">
 <label for="ln">Last Name</label><input id="ln">
 <input id="company" title="Company">
+
+<select aria-label="State">
+<option>AK</option>
+<option>AL</option>
+<option>etc.</option>
+</select>
+
+
+<h3 id="comments-header">Comments</h3>
+<textarea aria-labelledby="comments-header">
+
+</textarea>
+
 </form>
 
 
