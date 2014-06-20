@@ -45,7 +45,7 @@ window.waiAriaView = function (stylesheetRootUrl) {
 			return labelTag.innerText;
 		}
 
-		return el.getAttribute('title') || '';
+		return  el.getAttribute('alt') || el.getAttribute('title');
 	};
 
 	function matchInputsWithLabels() {
@@ -62,6 +62,18 @@ window.waiAriaView = function (stylesheetRootUrl) {
 		}
 	};
 
+
+	function replaceImagesWithText() {
+		var imgs = document.querySelectorAll('img');
+		for (var i=0; i < imgs.length; i++) {
+			var el = imgs[i];
+			var label = document.createElement('span');
+			label.setAttribute('aria-hidden', 'true');
+			label.setAttribute('data-aria-view', 'Alternative text for an img tag');
+			label.innerText = resolveLabelForElement(el);
+			el.parentNode.insertBefore(label, el);
+		}
+	};
 
 	window.waiAriaViewData = window.waiAriaViewData || {};
 
@@ -95,6 +107,7 @@ window.waiAriaView = function (stylesheetRootUrl) {
 		window.waiAriaViewData.hoverEffects = hoverEffects;
 		removePresentationNodes();
 		matchInputsWithLabels();
+		replaceImagesWithText();
 
 	} else {
 		document.body.innerHTML = window.waiAriaViewData.cachedHTML;

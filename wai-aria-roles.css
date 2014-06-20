@@ -30,7 +30,7 @@
 }
 
 
-label {
+label, img {
   position: absolute !important;
   height: 1px; width: 1px;
   overflow: hidden;
