@@ -37,12 +37,7 @@ img {
   clip: rect(1px, 1px, 1px, 1px);
 }
 
-label {
-  opacity: 0.5;
-}
 
-.field-label-wrapper {
-  padding: 2px;
-  margin: 2px 0;
-  background-color: #ccc;
+.field-label-wrapper span {
+  border-bottom: 1px dashed;
 }
