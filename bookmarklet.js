@@ -3,7 +3,7 @@ window.waiAriaView = function (stylesheetRootUrl) {
 	function hideHiddenNodes(element) {
 
 		if (window.getComputedStyle(element).display === "none" || element.getAttribute('aria-hidden') ===  "true") {
-			element.style.cssText = "display:none !important;	";
+			element.style.cssText = "display:none !important;";
 		}
 
 		for (var i = 0; i < element.children.length; i++) {
@@ -30,22 +30,36 @@ window.waiAriaView = function (stylesheetRootUrl) {
 	};
 
 	function resolveLabelForElement(el) {
+		// http://www.w3.org/TR/wai-aria/roles#textalternativecomputation
 		var labelTag;
 		var labelledById;
 
-		if ((labelledById = el.getAttribute('aria-labelledby')) && (labelTag = document.getElementById(labelledById)) ) {
-			return labelTag.innerText;
+
+		//TODO: Support multiple labelled-by values
+		if ((labelledById = el.getAttribute('aria-labelledby'))) {
+			labelTag = document.getElementById(labelledById);
+			if (labelTag) {
+				return labelTag.innerText;
+			} else {
+				return '';
+			}
 		}
 
 		if (el.getAttribute('aria-label')) {
 			return	el.getAttribute('aria-label');
 		}
 
-		if (el.id && (labelTag = document.querySelector('label[for="' + el.id + '"]')) ) {
+		if (el.id && (labelTag = document.querySelector('label[for="' + el.id + '"]'))) {
 			return labelTag.innerText;
 		}
 
-		return  el.getAttribute('alt') || el.getAttribute('title');
+		if (el.getAttribute('alt')  && (el.tagName === 'IMG' || el.tagName === 'AREA' || el.tagName === 'APPLET' || el.tagName === 'INPUT')) {
+			return el.getAttribute('alt');
+		}
+
+		//TODO: Implement rules B and C from above URL
+
+		return  el.getAttribute('title') || '';
 	};
 
 	function matchInputsWithLabels() {
@@ -53,6 +67,7 @@ window.waiAriaView = function (stylesheetRootUrl) {
 		for (var i=0; i < inputs.length; i++) {
 			var el = inputs[i];
 			var wrapper = document.createElement('div');
+			wrapper.setAttribute('class', 'field-label-wrapper');
 			var label = document.createElement('span');
 			label.setAttribute('aria-hidden', 'true');
 			label.innerText = resolveLabelForElement(el);
@@ -64,7 +79,7 @@ window.waiAriaView = function (stylesheetRootUrl) {
 
 
 	function replaceImagesWithText() {
-		var imgs = document.querySelectorAll('img');
+		var imgs = document.querySelectorAll('img,area,applet');
 		for (var i=0; i < imgs.length; i++) {
 			var el = imgs[i];
 			var label = document.createElement('span');
@@ -73,7 +88,7 @@ window.waiAriaView = function (stylesheetRootUrl) {
 			label.innerText = resolveLabelForElement(el);
 			el.parentNode.insertBefore(label, el);
 		}
-	};
+	}
 
 	window.waiAriaViewData = window.waiAriaViewData || {};
 

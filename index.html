@@ -98,6 +98,39 @@ This should be hidden.
 <img src="about:black" width="100" height="100" alt="some image">
 
 
+<h2>Examples from the WAI-ARIA Spec 5.7.2.4-5</h2>
+
+<ul role="menubar">
+ 
+ <!-- Rule 2A: "File" label via aria-labelledby -->
+  <li role="menuitem" aria-haspopup="true" aria-labelledby="fileLabel"><span id="fileLabel">File</span>
+    <ul role="menu">
+
+      <!-- Rule 2C: "New" label via Namefrom:contents -->
+      <li role="menuitem">New</li>
+      <li role="menuitem">Open&hellip;</li>
+    </ul>
+  </li>
+</ul>
+
+<fieldset>
+  <legend>Meeting alarms</legend>
+
+  <!-- Rule 2A: "Beep" label given by native HTML label element -->
+  <input type="checkbox" id="beep"> <label for="beep">Beep</label> <br>
+  <input type="checkbox" id="mtgTitle"> <label for="mtgTitle">Display the meeting title</label> <br>
+
+  <!-- Rule 2B: Full label of checkbox includes value ("3") of embedded text input, "Flash the screen 3 times" -->
+  <input type="checkbox" id="flash">
+  <label for="flash">
+    Flash the screen
+
+    <!-- Rule 2A: label of text input given by aria-label, "Number of times to flash screen" -->
+    <input type="text" value="3" size="2" id="numTimes" aria-label="Number of times to flash screen">
+    times
+  </label>
+</fieldset>
+
 
 <script type="text/javascript" src="bookmarklet.js"></script>
 <script type="text/javascript">
