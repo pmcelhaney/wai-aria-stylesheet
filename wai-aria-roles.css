@@ -38,6 +38,17 @@ img {
 }
 
 
-.field-label-wrapper span {
-  border-bottom: 1px dashed;
+.announce-on-focus {
+  display: none;
+}
+
+
+:focus + .announce-on-focus {
+  display: inline;
+  padding: 5px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  position: relative;
+  overflow: visible;
+  background: yellow;
 }
