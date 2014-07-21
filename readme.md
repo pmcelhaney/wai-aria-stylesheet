@@ -1,8 +1,8 @@
-#WAI-ARIA Stylesheet
+#ARIA View
 
-This is an attempt to create a stylesheet that approximates how a web page is perecived by a screen reader, taking into account WAI-ARIA roles.
+This is a bookmarklet that reformats the page to roughly approximate the way assistive technologies "see" it, taking
+WAI-ARIA attributes into account.
 
-So far I've implemented grids and it works pretty well in browsers that support CSS3. We'll probably need to add JavaScript to remove nodes that have role="presentation" because there's no way in CSS to say "this doesn't affect layout whatsoever".
-
-
+It's a work in progress and there's not much to say about it yet. Open up index.html in a browser that supports 
+CSS3 and you can get a feel for how it works.
 
