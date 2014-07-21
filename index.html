@@ -2,7 +2,7 @@
 
 <html>
 <head>
-	<title>WAI-ARIA Stylesheet Testbed</title>
+	<title>ARIA View Testbed</title>
 
 	<style type="text/css">
 		body {
@@ -128,7 +128,22 @@ This should be hidden.
     <!-- Rule 2A: label of text input given by aria-label, "Number of times to flash screen" -->
     <input type="text" value="3" size="2" id="numTimes" aria-label="Number of times to flash screen">
     times
+  </label><br>
+
+  <input type="checkbox" id="rotate">
+  <label for="rotate">
+  	Rotate the screen by 
+
+  		<select aria-label="degrees to rotate the screen">
+  			<option selected>90</option>
+  			<option>180</option>
+  			<option>270</option>
+  		</select>
+
+  		degrees
+
   </label>
+
 </fieldset>
 
 

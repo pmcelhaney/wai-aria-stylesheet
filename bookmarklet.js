@@ -40,9 +40,17 @@ window.waiAriaView = function(stylesheetRootUrl) {
             return node.value.trim();
         }
 
+        if (node.nodeName === 'SELECT') {
+            return node.options[node.selectedIndex].text.trim();
+        }
+
+        if (node.nodeName === 'TEXTAREA') {
+            return node.innerText.trim();
+        }
+
         var result = "";
         for (var i = 0; i < node.childNodes.length; i++) {
-            result += getTextForNode(node.childNodes[i]);
+            result += getTextForNode(node.childNodes[i]) + ' ';
 
         }
 
@@ -80,7 +88,7 @@ window.waiAriaView = function(stylesheetRootUrl) {
             return el.getAttribute('alt');
         }
 
-        //TODO: Implement rules B and C from above URL
+        //TODO: Fully implement rules B and C from above URL
 
         return el.getAttribute('title') || '';
     };
